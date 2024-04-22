@@ -16,6 +16,9 @@ namespace MYWeb_W1.Controllers
         [HttpGet]
         public IEnumerable<MeMeModels> Get()
         {
+            int a = 3;
+            int b = 6;
+            
             return new MeMeModels[]
             {
                 new MeMeModels(){Id = 1,Type = "梗圖",Content = "瑞克搖"}
