@@ -12,6 +12,21 @@ namespace MYWeb_W1.Controllers
     [ApiController]
     public class MeMeController : ControllerBase
     {
+        
+        private readonly ILineService _lineService;
+        private readonly LineBotConfig _lineBotConfig;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly HttpContext _httpContext;
+
+
+        public MeMeController(IServiceProvider serviceProvider, ILineService lineService, LineBotConfig config)
+        {
+            _lineService = lineService;
+            _lineBotConfig = config;
+
+            _httpContextAccessor = serviceProvider.GetRequiredService<IHttpContextAccessor>();
+            _httpContext = _httpContextAccessor.HttpContext;
+        }
         // GET: api/MeMe
         [HttpGet]
         public IEnumerable<MeMeModels> Get()
@@ -33,11 +48,22 @@ namespace MYWeb_W1.Controllers
         {
             return "value";
         }
-
+/*
         // POST: api/MeMe
         [HttpPost]
         public void Post([FromBody] string value)
         {
+        }
+        */
+        
+        [HttpPost] //POST {url}/api/MeMe
+        public async Task<IActionResult> Post()
+        {
+            var events = await _httpContext.Request.GetWebhookEventsAsync(_lineBotConfig.channelSecret);
+            var lineBotApp = new LineBotApp(_lineBotConfig, _lineService);
+            await lineBotApp.RunAsync(events);
+
+            return Ok();
         }
 
         // PUT: api/MeMe/5
