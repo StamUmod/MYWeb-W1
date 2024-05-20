@@ -27,6 +27,50 @@ public class LineService : ILineService
                 new ImageMessage(data[index].src, data[index].src, null),
             };
         }
+        
+        if (message == ("交通梗圖"))
+        {
+            List<MeMeModels> data = await _meMeServicess.List(3350);
+            int index = (new Random()).Next(0, data.Count);
+            
+            return new List<ISendMessage>
+            {
+                new ImageMessage(data[index].src, data[index].src, null),
+            };
+        }
+        
+        if (message == ("時事梗圖"))
+        {
+            List<MeMeModels> data = await _meMeServicess.List(35);
+            int index = (new Random()).Next(0, data.Count);
+            
+            return new List<ISendMessage>
+            {
+                new ImageMessage(data[index].src, data[index].src, null),
+            };
+        }
+        
+        if (message == ("VTUBER梗圖"))
+        {
+            List<MeMeModels> data = await _meMeServicess.List(319);
+            int index = (new Random()).Next(0, data.Count);
+            
+            return new List<ISendMessage>
+            {
+                new ImageMessage(data[index].src, data[index].src, null),
+            };
+        }
+        
+        if (message == ("18+梗圖"))
+        {
+            List<MeMeModels> data = await _meMeServicess.List(55);
+            int index = (new Random()).Next(0, data.Count);
+            
+            return new List<ISendMessage>
+            {
+                new ImageMessage(data[index].src, data[index].src, null),
+            };
+        }
 
         /*if (message.Contains(""))
         {
