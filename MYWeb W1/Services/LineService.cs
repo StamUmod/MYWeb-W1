@@ -19,7 +19,7 @@ public class LineService : ILineService
 
         if (message == ("推薦梗圖"))
         {
-            List<MeMeModels> data = await _meMeServicess.List(11);
+            List<MeMeModels> data = await _meMeServicess.List(0);
             int index = (new Random()).Next(0, data.Count);
             
             return new List<ISendMessage>
@@ -64,6 +64,50 @@ public class LineService : ILineService
         if (message == ("18+梗圖"))
         {
             List<MeMeModels> data = await _meMeServicess.List(55);
+            int index = (new Random()).Next(0, data.Count);
+            
+            return new List<ISendMessage>
+            {
+                new ImageMessage(data[index].src, data[index].src, null),
+            };
+        }
+        
+        if (message == ("動漫梗圖"))
+        {
+            List<MeMeModels> data = await _meMeServicess.List(190);
+            int index = (new Random()).Next(0, data.Count);
+            
+            return new List<ISendMessage>
+            {
+                new ImageMessage(data[index].src, data[index].src, null),
+            };
+        }
+        
+        if (message == ("18+梗圖"))
+        {
+            List<MeMeModels> data = await _meMeServicess.List(2897);
+            int index = (new Random()).Next(0, data.Count);
+            
+            return new List<ISendMessage>
+            {
+                new ImageMessage(data[index].src, data[index].src, null),
+            };
+        }
+        
+        if (message == ("JOJO梗圖"))
+        {
+            List<MeMeModels> data = await _meMeServicess.List(7);
+            int index = (new Random()).Next(0, data.Count);
+            
+            return new List<ISendMessage>
+            {
+                new ImageMessage(data[index].src, data[index].src, null),
+            };
+        }
+        
+        if (message == ("貓梗圖"))
+        {
+            List<MeMeModels> data = await _meMeServicess.List(968);
             int index = (new Random()).Next(0, data.Count);
             
             return new List<ISendMessage>
