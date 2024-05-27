@@ -252,11 +252,13 @@ public class LineService : ILineService
         } */
 
 
-        result = new List<ISendMessage>
+        /*result = new List<ISendMessage>
         {
             new TextMessage($"Receive a text event message \nchannelId={channelId}  \nuserId={userId}")
         };
         return result;
+        */
+        return null;
     } 
 
     public async Task<List<ISendMessage>> ProcessStickerEventMessageAsync(string channelId, string userId,
