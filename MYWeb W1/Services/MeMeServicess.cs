@@ -25,5 +25,26 @@ public class MeMeServicess
         }
         return result;
     }
+
+    public async Task<List<MeMeModels>> Tags(string c)
+    {
+        List<MeMeModels> result = new List<MeMeModels>();
+        
+        try
+        {
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(url+"?tag="+c);
+            if (response.IsSuccessStatusCode)
+            {
+                result = await response.Content.ReadFromJsonAsync<List<MeMeModels>>();
+            }    
+        }
+        catch (Exception exp)
+        {
+            Console.WriteLine(exp);
+            throw;
+        }
+        return result;
+    }
     
 }

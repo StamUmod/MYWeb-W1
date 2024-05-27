@@ -7,6 +7,7 @@ using MYWeb_W1.Services;
 public class LineService : ILineService
 {
     private readonly MeMeServicess _meMeServicess;
+    private Random random = new Random();
 
     public LineService()
     {
@@ -21,100 +22,154 @@ public class LineService : ILineService
         {
             List<MeMeModels> data = await _meMeServicess.List(0);
             int index = (new Random()).Next(0, data.Count);
-            
+
             return new List<ISendMessage>
             {
                 new ImageMessage(data[index].src, data[index].src, null),
             };
         }
-        
+
         if (message == ("交通梗圖"))
         {
             List<MeMeModels> data = await _meMeServicess.List(3350);
             int index = (new Random()).Next(0, data.Count);
-            
+
             return new List<ISendMessage>
             {
                 new ImageMessage(data[index].src, data[index].src, null),
             };
         }
-        
+
         if (message == ("時事梗圖"))
         {
             List<MeMeModels> data = await _meMeServicess.List(35);
             int index = (new Random()).Next(0, data.Count);
-            
+
             return new List<ISendMessage>
             {
                 new ImageMessage(data[index].src, data[index].src, null),
             };
         }
-        
+
         if (message == ("VTUBER梗圖"))
         {
             List<MeMeModels> data = await _meMeServicess.List(319);
             int index = (new Random()).Next(0, data.Count);
-            
+
             return new List<ISendMessage>
             {
                 new ImageMessage(data[index].src, data[index].src, null),
             };
         }
-        
+
         if (message == ("18+梗圖"))
         {
-            List<MeMeModels> data = await _meMeServicess.List(55);
-            int index = (new Random()).Next(0, data.Count);
-            
-            return new List<ISendMessage>
+            int randomValue = random.Next(0,100);
+            if (randomValue < 50)
             {
-                new ImageMessage(data[index].src, data[index].src, null),
-            };
+                List<MeMeModels> data = await _meMeServicess.List(55);
+                int index = (new Random()).Next(0, data.Count);
+
+                return new List<ISendMessage>
+                {
+                    new ImageMessage(data[index].src, data[index].src, null),
+                };
+            }
+            else
+            {
+                List<MeMeModels> data = await _meMeServicess.List(2897);
+                int index = (new Random()).Next(0, data.Count);
+
+                return new List<ISendMessage>
+                {
+                    new ImageMessage(data[index].src, data[index].src, null),
+                };
+            }
+            
         }
-        
+
         if (message == ("動漫梗圖"))
         {
             List<MeMeModels> data = await _meMeServicess.List(190);
             int index = (new Random()).Next(0, data.Count);
-            
+
             return new List<ISendMessage>
             {
                 new ImageMessage(data[index].src, data[index].src, null),
             };
         }
-        
-        if (message == ("18+梗圖"))
-        {
-            List<MeMeModels> data = await _meMeServicess.List(2897);
-            int index = (new Random()).Next(0, data.Count);
-            
-            return new List<ISendMessage>
-            {
-                new ImageMessage(data[index].src, data[index].src, null),
-            };
-        }
-        
+
         if (message == ("JOJO梗圖"))
         {
             List<MeMeModels> data = await _meMeServicess.List(7);
             int index = (new Random()).Next(0, data.Count);
-            
+
             return new List<ISendMessage>
             {
                 new ImageMessage(data[index].src, data[index].src, null),
             };
         }
-        
+
+    
+
         if (message == ("貓梗圖"))
+        {    int randomValue = random.Next(0,100);
+            if (randomValue < 50)
+            {
+                List<MeMeModels> data = await _meMeServicess.List(968);
+                int index = (new Random()).Next(0, data.Count);
+
+                return new List<ISendMessage>
+                {
+                    new ImageMessage(data[index].src, data[index].src, null),
+                };
+            }
+            else
+            {
+                List<MeMeModels> data = await _meMeServicess.Tags("貓貓");
+                int index = (new Random()).Next(0, data.Count);
+
+                return new List<ISendMessage>
+                {
+                    new ImageMessage(data[index].src, data[index].src, null),
+                };
+            }
+        }
+
+
+        if (message == ("反共梗圖"))
         {
-            List<MeMeModels> data = await _meMeServicess.List(968);
+            List<MeMeModels> data = await _meMeServicess.Tags("反共就對了");
             int index = (new Random()).Next(0, data.Count);
-            
+
             return new List<ISendMessage>
             {
                 new ImageMessage(data[index].src, data[index].src, null),
             };
         }
+
+        if (message == ("日常梗圖"))
+        {
+            List<MeMeModels> data = await _meMeServicess.Tags("日常");
+            int index = (new Random()).Next(0, data.Count);
+
+            return new List<ISendMessage>
+            {
+                new ImageMessage(data[index].src, data[index].src, null),
+            };
+        }
+
+        if (message == ("台灣梗圖"))
+        {
+            List<MeMeModels> data = await _meMeServicess.Tags("台灣");
+            int index = (new Random()).Next(0, data.Count);
+
+            return new List<ISendMessage>
+            {
+                new ImageMessage(data[index].src, data[index].src, null),
+            };
+        }
+
 
         /*if (message.Contains(""))
         {
@@ -259,7 +314,7 @@ public class LineService : ILineService
         return result;
         */
         return null;
-    } 
+    }
 
     public async Task<List<ISendMessage>> ProcessStickerEventMessageAsync(string channelId, string userId,
         string packageId, string stickerId)
